@@ -1,5 +1,5 @@
 #Installation
--git clone https://github.com/cretueusebiu/laravel-web-push-demo.git
+-git clone https://github.com/farestayari/webpush
 
 -cd webpush
 
