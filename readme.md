@@ -1,4 +1,4 @@
-Installation
+#Installation
 -git clone https://github.com/cretueusebiu/laravel-web-push-demo.git
 -cd laravel-web-push-demo
 -cp .env.example .env
