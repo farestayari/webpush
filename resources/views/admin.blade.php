@@ -20,7 +20,7 @@
                           <label for="exampleInputEmail1">Message</label>
                           <input type="text" class="form-control" id="message" name="message" placeholder="Votre Text">
                         </div>
-                        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" name="submit" class="btn btn-primary">Envoyer</button>
                     </form>
                 </div>
             </div>
