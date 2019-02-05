@@ -15,3 +15,5 @@
 -Set your database connection details
 
 -php artisan migrate
+
+-php artisan serve
