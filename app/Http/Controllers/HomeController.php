@@ -25,13 +25,17 @@ class HomeController extends Controller
         foreach ($messages as $message){
            $body = $messages->body;
         }
+        if (!$body){
+            $body = "Bienvenue au Pixels Trade Notification System ";
+        }
         OneSignal::sendNotificationToAll(
             $body, 
             $url = null, 
             $data = null, 
             $buttons = null, 
             $schedule = null
-        );    
+        );  
+
         return view ('welcome');
     }
 
@@ -46,8 +50,8 @@ class HomeController extends Controller
         foreach ($messages as $message){
            $body = $messages->body;
         }
-        if (!$body ){
-            $body = "Bienvenue au Pixels Trade";
+        if (!$body){
+            $body = "Bienvenue au Pixels Trade Notification System ";
         }
         OneSignal::sendNotificationToAll(
             $body, 
@@ -68,8 +72,15 @@ class HomeController extends Controller
     {
         $message = new Messages;
         $message->body = $request->message;
+        $body = $request->message;
         $message->save();
-
+        OneSignal::sendNotificationToAll(
+            $body, 
+            $url = null, 
+            $data = null, 
+            $buttons = null, 
+            $schedule = null
+        );    
         return redirect()->back();
     }
 }
