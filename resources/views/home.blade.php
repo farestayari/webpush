@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Pour recevoir des notifications personalisé veuillez cliqué sur la boutton sous déssous</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,8 +13,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+                    <div class="col-md-4 center-block">
+                            <button type="button" name="accept" id="accept" class="btn btn-dark">Accepter</button>
+                    </div>
                 </div>
             </div>
         </div>

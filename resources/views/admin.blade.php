@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+    @include('partials/side')
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Veuillez  écrivez votre message de notification</div>
@@ -25,6 +26,13 @@
                 </div>
             </div>
         </div>
+      
+            
+         
+       
+          
     </div>
+
+    
 </div>
 @endsection

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Messages;
 use OneSignal;
+use Auth;
+use App\User;
 
 
 class HomeController extends Controller
@@ -82,5 +84,38 @@ class HomeController extends Controller
             $schedule = null
         );    
         return redirect()->back();
+    }
+
+    public function showHistory()
+    {
+        $messages = Messages::all();
+
+        return view('history',[
+            'messages' => $messages
+        ]);
+    }
+
+    public function playerId(Request $request)
+    {
+        $user = Auth::user();
+        $playerId = $user->playerId;
+        if($user and !$playerId){
+               $user->playerId = $request->userId;
+               $user->save();
+        }
+    }
+
+    public function sendUnicastNotification(){
+        $users = User::all();
+        return view('unicast',[
+            'users'=> $users
+        ]);
+    }
+
+    public function handleUnicastNotification(Resquest $request){
+        $userId = $request->id;
+        $user = User::where('id',$userId);
+        $playerId = $user->playerId;
+        
     }
 }

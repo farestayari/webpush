@@ -11,6 +11,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
     <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
 {{--     <script src="{{ asset('OneSignalSDKUpdaterWorker.js') }}" defer></script>
  --}}    
@@ -25,8 +27,42 @@
     <link rel="manifest" href="{{ asset('manifest.json') }}" />
 <script>
   var OneSignal = window.OneSignal || [];
-  console.log(OneSignal)
   OneSignal.push(function() {
+      OneSignal.getUserId( function(userId) {
+/*           console.log(userId);
+ */          /* $.ajax({
+                headers: {
+                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'POST',
+                url:'/user/get_player',
+                data : {userId : userId},
+                success: function(data){
+                    console.log(userId);
+                    console.log('test');
+                }
+             }); */    
+            $(document).on('click', '#accept', function (e) {
+            e.preventDefault();
+            $.ajax({
+            type: 'post',
+            url: '{{ route("playerId") }}',
+            data: {
+                '_token': $('input[name=_token]').val(),
+                 'userId': userId,
+            },
+            success: function (data) {     
+                console.log(userId);
+                console.log(data);
+            },
+            error: function(XMLHttpRequest) {
+                console.error('Something Went Wrong !');
+            }
+        });
+
+    });
+      });
+
     OneSignal.init({
       appId: "94bf959a-efb0-4b90-b2d4-bdd0acc67333",
       notifyButton: {
@@ -41,7 +77,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Pixels Trade') }}
+                    Pixels Trade
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
