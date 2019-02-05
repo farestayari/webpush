@@ -46,6 +46,9 @@ class HomeController extends Controller
         foreach ($messages as $message){
            $body = $messages->body;
         }
+        if (!$body ){
+            $body = "Bienvenue au Pixels Trade";
+        }
         OneSignal::sendNotificationToAll(
             $body, 
             $url = null, 
